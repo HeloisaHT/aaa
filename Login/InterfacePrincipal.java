@@ -15,6 +15,8 @@ public class InterfacePrincipal extends JFrame {
     private JButton botaoHospital;
     private JButton botaoPaciente;
     private JButton botaoPesquisa;
+    private JButton botaoAlterarDadosUsuario; // Adicionando o botão aqui
+
 
     public InterfacePrincipal() {
         super("Sistema de doação de sangue");
@@ -30,6 +32,11 @@ public class InterfacePrincipal extends JFrame {
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
         constraints.weightx = 0.5;
+
+        botaoAlterarDadosUsuario = new JButton("Alterar Dados do Usuário");
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        painel.add(botaoAlterarDadosUsuario, constraints);
 
         botaoPreTriagem = new JButton("Pré-Triagem");
         constraints.gridx = 1;
@@ -62,6 +69,9 @@ public class InterfacePrincipal extends JFrame {
         constraints.gridx = 1;
         painel.add(botaoPesquisa, constraints);
 
+
+    
+
         add(painel);
         setVisible(true);
 
@@ -79,8 +89,20 @@ public class InterfacePrincipal extends JFrame {
             }
         });
 
+        botaoAlterarDadosUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Chame o método para alterar os dados do usuário
+                alterarDadosUsuario();
+            }
+        });
     }
 
+    private void alterarDadosUsuario() {
+        
+        new InterfaceAlterarDadosUsuario();
+    
+
+    }
     public static void main(String[] args) {
         new InterfacePrincipal();
     }

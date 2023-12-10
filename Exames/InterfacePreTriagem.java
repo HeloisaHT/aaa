@@ -25,12 +25,14 @@ public class InterfacePreTriagem extends JFrame {
     private JTextField hemoglobinaDoadorTextField;
     private JTextField hematocritoDoadorTextField;
     private JCheckBox habilitadoCheckBox;
+            boolean apto = true;
 
     public InterfacePreTriagem() {
         super("Pré-Triagem");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 400);
         setLocationRelativeTo(null);
+
 
         final JPanel painel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -40,7 +42,6 @@ public class InterfacePreTriagem extends JFrame {
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
         constraints.weightx = 0.5;
-
         JLabel nomeDoadorLabel = new JLabel("Nome do doador:");
         painel.add(nomeDoadorLabel, constraints);
 
@@ -151,29 +152,36 @@ public class InterfacePreTriagem extends JFrame {
                     double hemoglobina = Double.parseDouble(hemoglobinaDoadorTextField.getText());
                     double hematocrito = Double.parseDouble(hematocritoDoadorTextField.getText());
 
-                    
+                    apto = true;
                     if (idade < 18) {
+                        apto = false;
                         JOptionPane.showMessageDialog(null,
                                 "Você não pode doar sangue. Menores de 18 anos não são elegíveis.");
-                    } else if (temperatura < 35 || temperatura > 37) {
+                    }  if (temperatura < 35 || temperatura > 37) {
+                           apto = false;
                         JOptionPane.showMessageDialog(null,
                                 "Você não pode doar sangue. A temperatura está fora da faixa permitida.");
-                    } else if (pulso < 50 || pulso > 90) {
+                    }  if (pulso < 50 || pulso > 90) {
+                           apto = false;
                         JOptionPane.showMessageDialog(null,
                                 "Você não pode doar sangue. O pulso está fora da faixa permitida.");
-                    } else if (pressao < 9 || pressao > 13) {
+                    } if (pressao < 9 || pressao > 13) {
+                           apto = false;
                         JOptionPane.showMessageDialog(null,
                                 "Você não pode doar sangue. A pressão está fora da faixa permitida.");
-                    } else if (peso < 50) {
+                    }  if (peso < 50) {
+                           apto = false;
                         JOptionPane.showMessageDialog(null,
-                                "Você não pode doar sangue. O peso está abaixo do mínimo permitido.");
-                    } else if (hemoglobina < 12 || hemoglobina > 16) {
+                                "Você não pode doar sangue. O peso está abaixo do mínimo permitido ."+apto);
+                    }  if (hemoglobina < 12 || hemoglobina > 16) {
+                           apto = false;
                         JOptionPane.showMessageDialog(null,
                                 "Você não pode doar sangue. A hemoglobina está fora da faixa permitida.");
-                    } else if (hematocrito < 35 || hematocrito > 50) {
+                    }  if (hematocrito < 35 || hematocrito > 50) {
+                           apto = false;
                         JOptionPane.showMessageDialog(null,
                                 "Você não pode doar sangue. O hematócrito está fora da faixa permitida.");
-                    } else {
+                    } if (apto == true) {
                         dispose(); // Fecha a janela atual
                         InterfaceTriagem interfaceTriagem = new InterfaceTriagem();
                         interfaceTriagem.setVisible(true);

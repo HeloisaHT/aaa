@@ -90,6 +90,7 @@ public class InterfaceLogin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 new InterfaceCadastro();
+                
             }
         });
 
